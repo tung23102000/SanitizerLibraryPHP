@@ -10,7 +10,7 @@ Cần làm rõ 2 khái niệm: làm sạch (Sanitize) và xác thực tính hợ
 
 ***______________________________HOW TO USE_________________________________***
 1. Cài đặt từ GitHub:
-
+https://github.com/tung23102000/SanitizerLibraryPHP
 or
 
 Cài đặt từ Composer:
