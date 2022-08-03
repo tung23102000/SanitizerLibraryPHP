@@ -1,0 +1,17 @@
+{
+    "name": "mtp/sanitizer-library-php",
+    "description": "This is a simple library for sanitizing and validating user data in PHP.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Mtp\\SanitizerLibraryPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tung Nguyen",
+            "email": "hunterkid2310@gmail.com"
+        }
+    ],
+    "require": {}
+}
