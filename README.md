@@ -13,7 +13,7 @@ Cần làm rõ 2 khái niệm: làm sạch (Sanitize) và xác thực tính hợ
 https://github.com/tung23102000/SanitizerLibraryPHP
 
 2. Mở terminal, gõ lệnh: composer dump-autoload 
---> tạo thư mục vendor để autoload
+--> tạo thư mục vendor để autoload class
 và thêm phần require "../vendor/autoload.php"; 
 3. Thêm phần " use Mtp\SanitizerLibraryPhp\Filter; " vào tệp .php mà bạn muốn sử dụng và khởi tạo class " $filter = new Filter();".
 
