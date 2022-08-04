@@ -12,15 +12,31 @@ $filter = new Filter();
 // echo $filter->useEscape($strNotFilter);
 
 //________________________Ví dụ: sanitizeMultiple_____________________________
-// $data = "jshajdhsa 7t786o697";
-// $data2 = "^%*%&HJKHJSKHDJK7867";
-// $datas  = $filter->sanitizeMultiple(array($data,$data2),"int");
-// var_dump($datas);
+$data = "jshajdhsa 7t786o697";
+$data2 = "^%*%&HJKHJSKHDJK7867";
+$datas=array($data, $data2);
+//$keys = array_keys($datas);
+
+$datas  = $filter->sanitizeMultiple($datas,"int");
+// foreach($datas as $key){
+//     $data = $datas[$key];
+//     $data2= $datas[$key];
+// }
+// echo $datas[$keys[0]];
+// for ($i=0; $i < count($keys); $i++) { 
+//     $data = $datas[$keys[$i]];
+//     //$j=$i+1;
+//     $data2= $datas[$keys[$i+=1]];
+    
+// }
+//  echo $data."<br>";
+//  echo $data2;
+//var_dump($datas);
 
 //________________________Ví dụ: useBasicHTML_________________________________
-$data = "<i>MTP</i>";
-$data = $filter->UseBasicHTML($data,'<i>');
-echo $data;
+// $data = "<i>MTP</i>";
+// $data = $filter->UseBasicHTML($data,'<i>');
+// echo $data;
 
 //________________________Ví dụ: sanitizeArray________________________________
 // $array=array("red", "green", "blue", "yellow<script>alert('xss')</script>");
