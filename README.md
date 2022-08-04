@@ -11,15 +11,13 @@ Cần làm rõ 2 khái niệm: làm sạch (Sanitize) và xác thực tính hợ
 ***______________________________HOW TO USE_________________________________***
 1. Cài đặt từ GitHub:
 https://github.com/tung23102000/SanitizerLibraryPHP
-or
 
-Cài đặt từ Composer:
+2. Mở terminal, gõ lệnh: composer dump-autoload 
+--> tạo thư mục vendor để autoload
+và thêm phần require "../vendor/autoload.php"; 
+3. Thêm phần " use Mtp\SanitizerLibraryPhp\Filter; " vào tệp .php mà bạn muốn sử dụng và khởi tạo class " $filter = new Filter();".
 
-
-
-2. Thêm phần " use Mtp\SanitizerLibraryPhp\Filter; " vào tệp .php mà bạn muốn sử dụng và khởi tạo class " $filter = new Filter();".
-
-3. Bây giờ bạn hoàn toàn có thể sử dụng thư viện này:
+4. Bây giờ bạn hoàn toàn có thể sử dụng thư viện này:
 Ví dụ: 
 <?php require "vendor/autoload.php"; 
 use SanitizerLibraryPhp\Filter;
