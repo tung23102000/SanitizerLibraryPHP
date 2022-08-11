@@ -26,14 +26,14 @@ $filter = new Filter();
 +  Thoát các ký tự đặc biệt trong một chuỗi
  - useEscape
 <!-- $strNotFilter= "SELECT * FROM user where username = 'tung'";
-$strFilter = $filter->useEscape($strNotFilter); -->
+$strFilter = $filter->useEscape($strNotFilter)->getData(); -->
 
 + Làm sạch đầu vào
 - sanitize
 <!-- $data = "<script>alert('Prevent Xss');</script>"
 $data = $filter->sanitize($data, "type");
 //type có thể là string, int, message, aZ0-9, name, password, alpha, url...
-$data = $filter->sanitize($data,"message"); -->
+$data = $filter->sanitize($data,"message")->getData(); -->
 
 + Làm sạch đầu vào cùng 1 lúc nhiều inputs
 <!-- $data = "jshajdhsa 7t786o697";
