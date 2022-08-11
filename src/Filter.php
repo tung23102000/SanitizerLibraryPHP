@@ -10,10 +10,19 @@ use Mtp\SanitizerLibraryPhp\exception\InvalidDateException;
 use Mtp\SanitizerLibraryPhp\exception\InvalidNameException;
 
 class Filter
-{
+{   
+    private $data;
     public function __construct()
     {
     }
+    
+    public function setData($data){
+        $this->data = $data;
+        return $this;
+   }
+   public function getData(){
+       return $this->data;
+   }
 
     private function useHtmlSpecialCharacters($data, $quoteStyle = ENT_QUOTES, $charset = "UTF-8")
     {
@@ -41,13 +50,134 @@ class Filter
     }
 
 
+    // public function useEscape($data) //thoát các ký tự đặc biệt trong một chuỗi để sử dụng trong truy vấn SQL
+    // {
+    //     if (!empty($data)) {
+    //         return $this->escape($data);
+    //     }
+    // }
+
+    // //làm sạch đầu vào
+    // public function sanitize($data, $type, $trim = true, $htmlspecialchars = true)
+    // {
+    //     if (empty($type)) {
+    //         $type = gettype($data);
+    //     }
+    //     $data = (string)$data; //khi dùng với filter_var thì phải chuyển nội bộ thành kiểu string
+    //     switch ($type) {
+
+    //         case "integer":
+    //         case "int":
+    //             $data = preg_replace(
+    //                 "/[^0-9]/s",
+    //                 "",
+    //                 filter_var(
+    //                     $data,
+    //                     FILTER_SANITIZE_NUMBER_INT
+    //                 )
+    //             );
+    //             $data = (int)intval($data) + 0;
+    //             break;
+    //             //ok
+
+    //         case "float":
+    //             $data = preg_replace(
+    //                 "/[^0-9.]/s",
+    //                 "",
+    //                 filter_var($data, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)
+    //             );
+    //             $data = (float)floatval($data) + 0;
+    //             break;
+    //             //ok
+
+    //         case "text":
+    //         case "aZ0-9":
+    //             $data = $this->clean($data, $trim, $htmlspecialchars);
+    //             $data = preg_replace("/[^A-Za-z0-9]/s", "", $data);
+    //             break;
+    //             //ok 
+
+    //         case "url":
+    //             $data = filter_var($data, FILTER_SANITIZE_URL);
+    //             break;
+    //             //ok
+
+    //         case "password":
+    //             $data = $this->clean($data, false, false);
+    //             break;
+    //             //ok
+
+    //         case "name": //kiểu này dùng để nhập input cho họ tên ko dấu
+    //             $data = $this->clean($data, $trim, $htmlspecialchars);
+    //             $data = preg_replace("/[^A-Za-z\s+]/s", "", $data);
+    //             // $data = $this->clean($data, false, $htmlspecialchars);     
+    //             break;
+    //             //ok
+
+    //         case "alpha": //kiểu chữ cái
+    //             $data = preg_replace("/[^A-Za-z]/s", "", $data);
+    //             $data = $this->clean($data, $trim, $htmlspecialchars);
+    //             break;
+    //             //ok
+
+    //         case "vietnamese": //dùng để nhập tên tiếng việt
+    //             $data = preg_replace('/[\d#$%^\&*()+=\-\[\]\';,.\/{}|\":<>?~\\\\]/', "", $data);
+    //             $data = $this->clean($data, $trim, $htmlspecialchars);
+    //             break;
+    //             //ok
+
+
+    //         case "alphaWithLgt": // kiểu chữ với dấu ><
+    //             $data = $this->clean($data, false, $trim, false);
+    //             $data = preg_replace("/[^A-Za-z\<>=]/s", "", $data);
+    //             break;
+    //             //ok
+
+    //         case "string":
+    //         case "message": //kiểu này dùng nhập comment, đăng nội dung bài viết
+    //             $data = $this->clean($data, false, false, $htmlspecialchars);
+    //             break;
+    //             //ok
+
+    //         case "email":
+    //             $data = filter_var(strtolower($data), FILTER_SANITIZE_EMAIL);
+    //             $data = $this->clean($data, $trim, $htmlspecialchars);
+    //             break;
+    //             //ok
+
+    //         case "date":
+    //             //$data = $this->clean($data, $trim, $htmlspecialchars);
+    //             $data = preg_replace("/([^0-9\/\-])/s", "", $data);
+    //             $data = $this->clean($data, $trim, $htmlspecialchars);
+    //             break;
+    //             //ok
+
+    //         case "fileName":
+    //             $arrayExplodefileName = explode('.', $data);
+    //             $extension = array_pop($arrayExplodefileName);
+    //             $fileNameWithoutExt = substr($data, 0, strrpos($data, '.'));
+    //             $fileNameWithoutExt = $this->clean($fileNameWithoutExt, $trim, $htmlspecialchars);
+    //             $fileNameWithoutExt = preg_replace('/[^a-zA-Z0-9\s\_\-]/s', '_', $fileNameWithoutExt);
+    //             $data = $fileNameWithoutExt . '.' . $extension;
+    //             break;
+
+    //         default:
+    //             $data = $this->clean($data, $trim, $htmlspecialchars);
+    //             //$data = (string)$data;
+    //             break;
+    //     }
+
+    //     return $data;
+    // }
     public function useEscape($data) //thoát các ký tự đặc biệt trong một chuỗi để sử dụng trong truy vấn SQL
     {
         if (!empty($data)) {
-            return $this->escape($data);
+           $data = $this->escape($data);
+             $this->setData($data);
+             return $this;
+             //return $this;
         }
     }
-
     //làm sạch đầu vào
     public function sanitize($data, $type, $trim = true, $htmlspecialchars = true)
     {
@@ -157,9 +287,12 @@ class Filter
                 //$data = (string)$data;
                 break;
         }
-
-        return $data;
+        $this->setData($data);
+        return $this;
     }
+
+
+
     // làm sạch đầu vào cùng 1 lúc nhiều input 
     public function sanitizeMultiple(array $data_list, $type, $trim = true, $htmlspecialchars = true)
     {

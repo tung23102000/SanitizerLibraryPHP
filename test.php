@@ -9,7 +9,7 @@ $filter = new Filter();
 //  echo $strFilter;
 //  echo "<br>";
 //  echo "<br>";
-// echo $filter->useEscape($strNotFilter);
+// echo $filter->useEscape($strNotFilter)->getData();
 
 //________________________Ví dụ: sanitizeMultiple_____________________________
 $data = "jshajdhsa 7t786o697";
@@ -64,8 +64,8 @@ $datas  = $filter->sanitizeMultiple($datas,"int");
 if (isset($_POST['submit'])) {
     $data = $_POST['data'];
     $type = $_POST['type'];
-    $fileName = $_FILES['file']['name'];
-    $filterData = $filter->sanitize($data, $type);
+    //$fileName = $_FILES['file']['name'];
+    $filterData = $filter->sanitize($data, $type)->getData();
 
 }
 ?>
@@ -127,7 +127,7 @@ if (isset($_POST['submit'])) {
                         </select>
 
                     </div>
-                    <input type="file" name="file" >
+                    <!-- <input type="file" name="file" > -->
                    
                     <div class="form-group justify-content-center" style="margin:0 auto; width: 40%;">
                         <button class="btn btn-success" type="submit" name="submit" style="width: 100%;">Submit</button>
